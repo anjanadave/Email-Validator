@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Email Validator</h1>
+        <label for="enter" class="enter">Enter an email address:</label><br>
+        <input type="email" class="name" id="inputEmail" oninput="resetResultColor()"><br>
+        <button type="button" onclick="validateEmail() ">Validate Email</button>
+        <p id="result"></p>
+     </div>
+     <script>
+        function validateEmail(){
+            var email = document.getElementById('inputEmail').value;
+            var resultElement = document.getElementById('result');
+
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailPattern.test(email)) {
+                resultElement.innerHTML = email + ' is a valid email address.';
+                resultElement.classList.remove('invalid-result');
+                resultElement.classList.add('valid-result');
+            } else {
+                resultElement.innerHTML = email + ' is not a valid email address.';
+                resultElement.classList.remove('valid-result');
+                resultElement.classList.add('invalid-result');
+            }
+        }
+        function resetResultColor() {
+            var resultElement = document.getElementById('result');
+            resultElement.classList.remove('valid-result', 'invalid-result');
+        }
+     </script>
+</body>
+</html>
